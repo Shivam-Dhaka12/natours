@@ -26,6 +26,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
 }));
 
+app.options('*', cors());
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
