@@ -1,0 +1,45 @@
+@mixin clearfix {
+    &::after{
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin absCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// MEDIA QUERY MANAGER
+/*
+
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1250px:   Tablet landscape
+[1250 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+
+1em = 16px;
+Divide by 16 (900/16) = 56.25;
+
+
+*/
+
+
+@mixin respond ($breakpoint) {
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 43.5em) { @content };
+    }
+    @if $breakpoint == tab-port {
+        @media  only screen and (max-width: 71.25em) { @content };
+    }
+    @if $breakpoint == tab-land {
+        @media  only screen and (max-width: 78.125em) { @content };
+    }
+    @if $breakpoint == big-desktop {
+        @media  only screen and (min-width: 112.5em) { @content };
+    }
+}

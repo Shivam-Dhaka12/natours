@@ -1,0 +1,22 @@
+.heading-tertiary-login {
+    font-size: $default-font-size;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+}
+
+.paragraph-login {
+    max-width: max-content;
+    margin: 1rem auto;
+    padding: .5rem 2rem;
+
+    font-size: $default-font-size;
+    text-align: center;
+    color: $color-primary-dark;
+    background-color: $color-grey-light;
+    border-radius: 4px;
+}

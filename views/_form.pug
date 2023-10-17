@@ -1,0 +1,33 @@
+section.section-book#contact-section
+    .row.small-padding__on-phone
+        .book
+            .book__form
+                .u-margin-bottom-medium
+                    h2.heading-secondary
+                        | Contact Us
+                form.form.form--contact(action='#')
+                    .form__group
+                        input#name--contact.form__input(type='text' placeholder='Full Name' required='')
+                        label.form__label(for='name')
+                            | Full Name
+                    .form__group
+                        input#email--contact.form__input(type='email' placeholder='Email' required='')
+                        label.form__label(for='email')
+                            | Email
+                    .form__group
+                        textarea#message--contact.form__input.form__input--message(type='text' placeholder='Message' required='')
+                        label.form__label(for='')
+                            | Message
+                    .form__group.u-margin-bottom-medium
+                        .form__radio-group
+                            input#hire.form__radio-input(type='radio' name='size' value='hire')
+                            label.form__radio-label(for='hire')
+                                span.form__radio-button
+                                |                                             Hire
+                        .form__radio-group
+                            input#contact.form__radio-input(type='radio' name='size' value='Contact')
+                            label.form__radio-label(for='contact')
+                                span.form__radio-button
+                                |                                             Contact
+                    .form__group
+                        button#send-mail.btn.btn--green.btn--animated Send &rarr;

@@ -1,0 +1,258 @@
+//- include _navigation
+
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet')
+  link(rel='stylesheet' type='text/css' href='css/icon-font.css')
+  //- link(rel='stylesheet' href='/css/style.css')
+  link(rel='stylesheet' href='/css/sass_style.css')
+  link(rel='stylesheet' href='/css/common_style.css')
+  link(rel='shortcut icon' type='image/png' href='img/favicon.png')
+  link(href="https://fontawesome.com/icons/circle-arrow-right?f=classic&s=solid")
+  title Natours | Exciting tours for adventurous people
+
+body
+  include _top
+  //- +navigation
+  header.header
+    .header__logo-box
+    .header__text-box
+      h1.heading-primary
+        span.heading-primary--main Outdoors
+        span.heading-primary--sub is where life happens
+      a.btn.btn--white.btn--animated(href='/tours') Discover our tours
+  main
+    section.section-about
+      .u-center-text.u-margin-bottom-big
+        h2.heading-secondary
+          | Exciting tours for adventours people
+      .row
+        .col-1-of-2
+          h3.heading-tertiary.u-margin-bottom-small
+            | You&apos;re going to fall in love with nature
+          p.paragraph
+            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio odit nesciunt earum? Earum, cumque. Ratione debitis quae, numquam quaerat, voluptatem quod nulla sit officiis sed iure sequi voluptate voluptas?
+          h3.heading-tertiary.u-margin-bottom-small
+            | Live adventures like you never have before
+          p.paragraph
+            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio odit nesciunt earum? Earum, cumque.
+  
+        .col-1-of-2
+          .composition
+            img.composition__photo.composition__photo--p1(loading='lazy' srcset='img/nat-1.jpg 300w, img/nat-1-large.jpg 1000w' sizes='(max-width: 900px) 20vw, (max-width: 600px) 30vw, 300px' alt='Photo 1' src='./img/nat-1-large.jpg')
+            img.composition__photo.composition__photo--p2(loading='lazy' srcset='img/nat-2.jpg 300w, img/nat-2-large.jpg 1000w' sizes='(max-width: 900px) 20vw, (max-width: 600px) 30vw, 300px' alt='Photo 2' src='./img/nat-2-large.jpg')
+            img.composition__photo.composition__photo--p3(loading='lazy' srcset='img/nat-3.jpg 300w, img/nat-3-large.jpg 1000w' sizes='(max-width: 900px) 20vw, (max-width: 600px) 30vw, 300px' alt='Photo 3' src='./img/nat-3-large.jpg')
+     
+    section.section-features
+      .row
+        .col-1-of-4
+          .feature-box
+            i.feature-box__icon.icon-basic-world
+            h3.heading-tertiary.u-margin-bottom-small Explore the world
+            p.feature-box__text
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio odit nesciunt earum?
+        .col-1-of-4
+          .feature-box
+            i.feature-box__icon.icon-basic-compass
+            h3.heading-tertiary.u-margin-bottom-small Meet Nature
+            p.feature-box__text
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio odit nesciunt earum?
+        .col-1-of-4
+          .feature-box
+            i.feature-box__icon.icon-basic-map
+            h3.heading-tertiary.u-margin-bottom-small Fnd your way
+            p.feature-box__text
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio odit nesciunt earum?
+        .col-1-of-4
+          .feature-box
+            i.feature-box__icon.icon-basic-heart
+            h3.heading-tertiary.u-margin-bottom-small Live a healthier life
+            p.feature-box__text
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad distinctio odit nesciunt earum?
+    section.section-tours
+      .u-center-text.u-margin-bottom-big
+        h2.heading-secondary
+          | Most popular tours
+      .row
+        // Columns for Tours Small
+        .col-1-of-3.phone
+          .tour-card.tour-card--1
+            .tour-card__cta
+              .tour-card__price-box
+                p.tour-card__price-only Only
+                p.tour-card__price-value $297
+              a.btn.btn--orange.btn--orange--small(href='/tours/the-sea-explorer') Details
+            .tour-card__details
+              ul.tour-card__list
+                li 3 day tours
+                li Up to 30 people
+                li 2 tour guides
+                li Sleep in cozy hotels
+                li Difficulty: easy
+            h4.card__heading.tour-card__heading
+              span.card__heading-span.card__heading-span--1
+                | The Sea Explorer
+        .col-1-of-3.phone
+          .tour-card.tour-card--2
+            .tour-card__cta
+              .tour-card__price-box
+                p.tour-card__price-only Only
+                p.tour-card__price-value $497
+              a.btn.btn--green.btn--green--small(href='/tours/the-forest-hiker') Details
+            .tour-card__details
+              ul.tour-card__list
+                li 7 day tours
+                li Up to 40 people
+                li 6 tour guides
+                li Sleep in provided tents
+                li Difficulty: medium
+            h4.card__heading.tour-card__heading
+              span.card__heading-span.card__heading-span--2
+                | The Forest Hiker
+        .col-1-of-3.phone
+          .tour-card.tour-card--3
+            .tour-card__cta
+              .tour-card__price-box
+                p.tour-card__price-only Only
+                p.tour-card__price-value $897
+              a.btn.btn--blue.btn--blue--small(href='/tours/the-snow-adventurer') Details
+            .tour-card__details
+              ul.tour-card__list
+                li 5 day tours
+                li Up to 15 people
+                li 3 tour guides
+                li Sleep in privided tents
+                li Difficulty: Hard
+            h4.card__heading.tour-card__heading
+              span.card__heading-span.card__heading-span--3
+                | The Snow Adventurer
+        // ==================================Columns for Tours large===============================================>
+        .col-1-of-3
+          .card
+            | &grave;
+            .card__side.card__side--front
+              .card__picture.card__picture--1
+              h4.card__heading
+                span.card__heading-span.card__heading-span--1
+                  | The Sea Explorer
+              .card__details
+                ul
+                  li 3 day tours
+                  li Up to 30 people
+                  li 2 tour guides
+                  li Sleep in cozy hotels
+                  li Difficulty: easy
+            .phone-cta
+              .card__cta
+                .card__price-box
+                  p.card__price-only Only
+                  p.card__price-value $297
+                a.btn.btn--orange(href='/tours/the-sea-explorer') Details
+            .card__side.card__side--back.card__side--back-1
+              .card__cta
+                .card__price-box
+                  p.card__price-only Only
+                  p.card__price-value $297
+                a.btn.btn--white(href='/tours/the-sea-explorer') Details
+        .col-1-of-3
+          .card
+            .card__side.card__side--front
+              .card__picture.card__picture--2
+              h4.card__heading
+                span.card__heading-span.card__heading-span--2
+                  | The Forest Hiker
+              .card__details
+                ul
+                  li 7 day tours
+                  li Up to 40 people
+                  li 6 tour guides
+                  li Sleep in provided tents
+                  li Difficulty: medium
+            .phone-cta
+              .card__cta
+                .card__price-box
+                  p.card__price-only Only
+                  p.card__price-value $497
+                a.btn.btn--green(href='/tours/the-forest-hiker') Details
+            .card__side.card__side--back.card__side--back-2
+              .card__cta
+                .card__price-box
+                  p.card__price-only Only
+                  p.card__price-value $497
+                a.btn.btn--white(href='/tours/the-forest-hiker') Details
+        .col-1-of-3
+          .card
+            .card__side.card__side--front
+              .card__picture.card__picture--3
+              h4.card__heading
+                span.card__heading-span.card__heading-span--3
+                  | The Snow Adventurer
+              .card__details
+                ul
+                  li 5 day tours
+                  li Up to 15 people
+                  li 3 tour guides
+                  li Sleep in privided tents
+                  li Difficulty: Hard
+            .phone-cta
+              .card__cta
+                .card__price-box
+                  p.card__price-only Only
+                  p.card__price-value $897
+                a.btn.btn--blue(href='/tours/the-snow-adventurer') Details
+            .card__side.card__side--back.card__side--back-3
+              .card__cta
+                .card__price-box
+                  p.card__price-only Only
+                  p.card__price-value $897
+                a.btn.btn--white(href='/tours/the-snow-adventurer') Details
+      .u-center-text.u-margin-top-big
+        a.btn.btn--green.tab-margin-top-small(href='/tours') Discover All Tours
+    section.section-stories
+      .bg-video
+        video.bg-video__content(autoplay='' muted='' loop='' poster='./img/bg-poster-small.jpeg')
+          source(src='./img/video.mp4' type='video/mp4')
+          source(src='./img/video.webm' type='video/webm')
+          |                         Your brower does not support the video.
+        img.bg-video__fallback(src='./img/bg-poster-small.jpeg' loading='lazy' alt='Poster Image')
+      .u-center-text.u-margin-bottom-big
+        h2.heading-secondary
+          | We make people genuinely happy
+      .row
+        .story
+          figure.story__shape
+            img.story__img(loading='lazy' srcset='./img/nat-8-small.jpeg 150w , ./img/nat-8.jpg 2000w' sizes='(max-width: 696px) 18vw, (max-width: 1125px) 50vw, 305px' src='./img/nat-8.jpeg' alt='Person on a tour')
+            figcaption.story__caption Mary Smith
+          .story__text
+            h3.heading-tertiary.u-margin-bottom-small.u-margin-top-small
+              | I had the best week ever with my family
+            p
+              | Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum accusamus praesentium necessitatibus, dolore tempora consectetur ipsam, consequuntur ex sequi reprehenderit itaque alias perferendis fugiat veniam doloremque commodi velit laboriosam earum?
+              | ipsam.
+      .row
+        .story
+          figure.story__shape
+            img.story__img(loading='lazy' srcset='./img/nat-9-small.jpeg 150w , ./img/nat-9.jpg 2000w' sizes='(max-width: 696px) 18vw, (max-width: 1125px) 50vw, 305px' src='./img/nat-9.jpeg' alt='Person on a tour')
+            figcaption.story__caption Vishal Dhaka
+          .story__text
+            h3.heading-tertiary.u-margin-bottom-small.u-margin-top-small
+              | Wow! My life is completely different now
+            p
+              | Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum accusamus praesentium necessitatibus, dolore tempora consectetur ipsam, consequuntur ex sequi reprehenderit itaque alias perferendis fugiat veniam doloremque commodi velit laboriosam earum?
+              | ipsam.
+      .u-center-text.u-margin-top-huge
+        a.btn-text(href='/stories') Read more stories &rarr;
+      
+    include _form
+
+  include _footer
+
+  #popup.popup
+    .popup__content
+      div
+        a.popup__cross(href='#') &times;
+script(src='/js/bundle.js')
+
+

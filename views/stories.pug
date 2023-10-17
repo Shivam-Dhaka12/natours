@@ -1,0 +1,15 @@
+extends base
+include _reviewCard
+
+block append head
+    link(rel='stylesheet' href='/css/sass_style.css')
+    link(rel='stylesheet' href='/css/common_style.css')
+
+block content
+
+  section.stories 
+    h1.heading-secondary Our Stories
+    .grid-container 
+        .stories-grid
+            each review in reviews
+                +reviewCard(review)

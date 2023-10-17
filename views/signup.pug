@@ -1,0 +1,28 @@
+extends base
+
+block content
+
+    main.main
+        .login-form
+            h2.heading-secondary.ma-bt-lg Sign Up 
+            form.form.form--signup
+                .form__group
+                    label.form__label(for='name-signup') Full Name
+                    input#name-signup.form__input(type='text', placeholder='John Doe', required)
+                .form__group
+                    label.form__label(for='email-signup') Email address
+                    input#email-signup.form__input(type='email', placeholder='you@example.com', required)
+                .form__group.ma-bt-md
+                    label.form__label(for='password-signup') Password
+                    input#password-signup.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                .form__group.ma-bt-md
+                    label.form__label(for='confirm-password-signup') Confirm Password
+                    input#confirm-password-signup.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                .form__group
+                    button#signup.btn.btn--green.btn--long(type='submit') Submit
+                    button#google-login.btn.btn--green.btn--long Google Sign up
+            
+                    a.form-link.form-link--login(href="/login") Already have an account? 
+                        span Login.
+
+    

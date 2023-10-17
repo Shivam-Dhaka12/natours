@@ -1,0 +1,449 @@
+.phone{
+    display: none;
+}
+
+.phone-cta {
+    display: none;
+}
+
+.card {
+
+    //functionality
+    perspective: 150rem;
+    -moz-perspective: 150rem; 
+    position: relative;
+    height: 52rem;
+
+
+    &__side {      
+
+        height: 52rem;
+        transition: all 1s ease;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        backface-visibility: hidden;
+        border-radius: 3px;
+        overflow: hidden;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+
+        &--front {
+            background-color: $color-white;
+            color: black;
+        }
+
+        &--back {
+            transform: rotateY(180deg);
+
+            &-1 {
+                background: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+            }            
+            
+            &-2 {
+                background: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+            }           
+            
+            &-3 {
+                background: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark);
+            }
+        }
+
+    }
+
+    &:hover &__side--front{
+        transform: rotateY(-180deg);
+    }
+
+    &:hover &__side--back{
+        transform: rotateY(0);
+    }
+
+    // Front side styling
+    &__picture {
+        
+        background-size: cover;
+        height: 23rem;
+        background-blend-mode: screen; 
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+        &--1 {
+            background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark),url(../img/compressed-images/jpeg-optimizer_nat-5.jpeg);
+        }        
+        
+        &--2 {
+            background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark),url(../img/compressed-images/jpeg-optimizer_nat-6.jpeg);
+        }        
+        
+        &--3 {
+            background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark),url(../img/compressed-images/jpeg-optimizer_nat-7.jpeg);
+        }
+
+
+
+        @media screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+        screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+        screen and (min-width: 125em) {
+            &--1 {
+                background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark),url(../img/compressed-images/jpeg-optimizer_nat-5.jpeg);
+            }        
+            
+            &--2 {
+                background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark),url(../img/compressed-images/jpeg-optimizer_nat-6.jpeg);
+            }        
+            
+            &--3 {
+                background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark),url(../img/compressed-images/jpeg-optimizer_nat-7.jpeg);
+            }
+        }
+    }
+
+    &__heading {
+        font-size: 2.8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        text-align: right;
+        color: $color-white;
+        position: absolute;
+        top: 12rem;
+        right: 2rem;
+        display: inline-block;
+        width: 72%;
+
+    }
+
+    &__heading-span {
+
+        padding: 1rem 1.5rem;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+
+        &--1 {
+            background-image: linear-gradient(to right bottom, rgba($color-secondary-light, .85), rgba($color-secondary-dark, .85));
+        }        
+        
+        &--2 {
+            background-image: linear-gradient(to right bottom, rgba($color-primary-light, .85), rgba($color-primary-dark, .85));
+        }        
+        
+        &--3 {
+            background-image: linear-gradient(to right bottom, rgba($color-tertiary-light, .85), rgba($color-tertiary-dark, .85));
+        }
+    }
+
+    &__details {
+
+        padding: 3rem;
+        
+        ul {
+            margin: 0 auto;
+            list-style: none;
+            width: 80%;
+
+            li {
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 1rem;
+                color: $color-grey-dark;
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid $color-grey-light-2;
+                }
+            }
+        }
+    }
+
+    // Front side styling
+
+    &__cta {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        text-align: center;
+
+    }
+
+    &__price-box {
+        text-align: center;
+        color: white;
+        margin-bottom: 8rem;
+    }
+
+    &__price-only {
+        font-size: 1.4rem;
+        text-transform: uppercase;
+    }
+
+    &__price-value {
+        font-size: 6rem;
+        font-weight: 200;
+    }
+}
+
+@include respond(tab-land){
+    .phone{
+        display: none;
+    }
+
+    .phone-cta {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 71.25em),
+    only screen and (hover: none) {
+
+    .col-1-of-3 {
+        width: 100% !important;
+        margin: 0 auto;
+        margin-top: 5rem;
+    }
+
+    .card{
+        display: none;
+    }
+
+    .phone {
+        display: block;
+    }
+
+    .phone-cta {
+        display: none;
+    }
+
+    .tour-card{
+        display: block;
+        width: min(100%, 85rem);
+        height: 40rem;
+        margin: 0 auto;
+        position: relative;
+        background-size: cover;
+
+        background-size: 110% auto;
+        background-blend-mode: screen;
+        border-radius: 3px;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+        &--1 {
+            background-image: linear-gradient(
+                105deg,
+                rgba($color-white, 1) 0%,
+                rgba($color-white, 1) 48%,
+                $color-secondary-dark 48%
+            ), url(../img/compressed-images/jpeg-optimizer_nat-5.jpeg);
+        }
+
+        &--2 {
+            background-image: linear-gradient(
+                105deg,
+                rgba($color-white, 1) 0%,
+                rgba($color-white, 1) 48%,
+                $color-primary-dark 48%
+            ), url(../img/compressed-images/jpeg-optimizer_nat-6.jpeg);
+        }
+
+        &--3 {
+            background-image: linear-gradient(
+                105deg,
+                rgba($color-white, 1) 0%,
+                rgba($color-white, 1) 48%,
+                $color-tertiary-dark 48%
+            ), url(../img/compressed-images/jpeg-optimizer_nat-7.jpeg);
+        }
+
+        @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+        only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+        only screen and (min-width: 695px) {
+            &--1 {
+                background-image: linear-gradient(
+                    105deg,
+                    rgba($color-white, 1) 0%,
+                    rgba($color-white, 1) 48%,
+                    $color-secondary-dark 48%
+                ), url(../img/compressed-images/jpeg-optimizer_nat-5.jpeg);
+            }
+    
+            &--2 {
+                background-image: linear-gradient(
+                    105deg,
+                    rgba($color-white, 1) 0%,
+                    rgba($color-white, 1) 48%,
+                    $color-primary-dark 48%
+                ), url(../img/compressed-images/jpeg-optimizer_nat-6.jpeg);
+            }
+    
+            &--3 {
+                background-image: linear-gradient(
+                    105deg,
+                    rgba($color-white, 1) 0%,
+                    rgba($color-white, 1) 48%,
+                    $color-tertiary-dark 48%
+                ), url(../img/compressed-images/jpeg-optimizer_nat-7.jpeg);
+            }
+        }
+
+        &__cta {
+            top: 4rem;
+            left: 3rem;
+            position: absolute;
+            width: 40%;
+            text-align: center;
+        }
+
+        &__price-box {
+                margin-bottom: 2rem;
+            }
+
+        &__price-only {
+                font-size: 1rem;
+                text-transform: uppercase;
+            }
+        
+        &__price-value {
+            font-size: 3rem;
+            font-weight: 300;
+        }
+
+        &__details {
+            width: 40%;
+            position: absolute;
+            height: 20rem;
+            top: 18rem;
+            left: 3rem;
+        }
+        
+        &__list {
+            list-style: none;
+            position: absolute;
+            top: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 1.4rem;
+            // font-weight: 400;
+
+            li {
+                &:not(:last-child) {
+                    border-bottom: 1px solid $color-grey-light-2;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+
+        &__heading {
+            position: absolute;
+            top: 25rem;
+            width: 30%;
+
+        }
+    }
+
+    .card__heading-span {
+
+        
+        &--1 {
+            background-image: linear-gradient(to right bottom, rgba($color-secondary-light, .85), rgba($color-secondary-dark, .85));
+        }        
+        
+        &--2 {
+            background-image: linear-gradient(to right bottom, rgba($color-primary-light, .85), rgba($color-primary-dark, .85));
+        }        
+        
+        &--3 {
+            background-image: linear-gradient(to right bottom, rgba($color-tertiary-light, .85), rgba($color-tertiary-dark, .85));
+        }
+    }
+
+    .tab-margin-top-small {
+        position: absolute;
+        top: -15rem;
+
+    }
+}
+
+@include respond(phone) {
+
+
+
+    .phone{
+        display: none;
+    }
+
+    .phone-cta {
+        display: block;
+    }
+
+    .card {
+        display: block;
+        max-width: 38rem;
+        margin: 0 auto;
+
+        &__side {
+            transform: none;
+
+            &--back {
+                display: none;
+            }
+
+        }
+
+        &:hover &__side--front{
+            transform: rotateY(0deg);
+        }
+
+        &__details {
+            display: none;
+        }
+
+        // Front side styling
+
+        &__cta {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            text-align: center;
+
+        }
+
+        &__price-box {
+            text-align: center;
+            color: $color-grey-dark-2;
+            margin-bottom: 3rem;
+        }
+
+        &__price-only {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+        }
+
+        &__price-value {
+            font-size: 5rem;
+            font-weight: 300;
+        }
+    }
+
+    .tab-margin-top-small {
+        position: absolute;
+        top: 0rem;  
+    }
+}
+
+
+
+@include respond(big-desktop){
+
+    .phone{
+        display: none;
+    }
+
+    .phone-cta {
+        display: none;
+    }
+}
+

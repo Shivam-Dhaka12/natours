@@ -1,0 +1,182 @@
+// .section-contact{
+
+//     background-color: $color-grey-dark-3;
+//     padding: 12rem  0 10rem 0;
+
+//     .form__label {
+//         visibility: hidden;
+
+//         @include respond(phone){
+//             visibility: visible;
+//         }
+//     }
+
+//     .contact{
+
+//         background-image: none ;
+//         box-shadow: none ;
+//         // padding: 0 3rem;
+    
+//         @include respond(phone){
+//             background-image: none ;
+//             box-shadow: none ;
+//         }
+
+//         &__form {
+//             position: relative;
+//         }
+
+//         &__input {
+//             font-size: 1.5rem;
+//             background-color: rgba($color-grey-light, 1);
+//             min-height: 5rem;
+//             border-radius: 3px;
+//             float: right;
+
+
+//             &--message {
+
+//                 margin: 0 auto;
+//                 margin-bottom: 5rem;
+//                 min-height: 35rem;
+//                 float: left;
+//                 max-width: 60rem;
+
+//                 @include respond(tab-port){
+//                     min-height: 30rem;
+//                 }
+//             }
+
+//             &:focus {
+//                 outline: none;
+//                 box-shadow: 0 1rem 2rem rgba($color-white, .1);
+//                 border-bottom: 3px solid $color-primary;
+    
+//                 &:invalid{
+//                     border-bottom: 3px solid $color-secondary-dark;
+//                 }
+        
+//             }
+
+
+    
+//             @include respond(phone){
+//                 margin: 0 auto;
+//                 min-height: 5rem;
+//                 float: none;
+    
+//                 &--message {
+//                     min-height: 25rem;
+//                     margin-bottom: 5rem;
+//                     float: none;
+//                     max-width: 40rem;
+
+//                 }
+    
+//             }
+
+
+//         }
+
+
+
+
+//         &__group {
+            
+//             // margin: 0 auto;
+//             margin-bottom: 1rem;
+//             max-width: 45rem;
+
+//             @include respond (phone){
+//                 margin: 0 auto;
+//                 margin-bottom: 1rem;
+//                 max-width: 40rem;
+
+//             }
+//         }
+//     }
+// }
+
+
+
+
+
+
+// .line {
+//     max-width: 40%;
+//     margin-inline: auto;
+//     display: block;
+//     margin-top: 10rem;
+    
+//     &__horizontal {
+//         height: 2px;
+//         border: none;
+//         outline: none;
+//         background: linear-gradient(
+//             to right,
+//              rgba($color-grey-dark-2, .1) 0%,
+//              rgba($color-grey-dark-2, 1) 50%,
+//              rgba($color-grey-dark-2, .1) 100%
+//              );
+//     }
+// }
+
+
+// .flex{
+
+//     display: flex;
+
+//     @include respond(tab-port){
+//         gap: 5rem;
+//     }
+
+//     @include respond(phone){
+//         display: block;
+//     }
+
+//     &_item {
+//         flex: 9 11;
+//     }
+// }
+
+// .name_box {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-end;
+
+//     @include respond(phone){
+//         display: block;
+//     }
+// }
+
+
+
+// .btn--contact {
+    
+//     position: absolute;
+//     left: 5rem;
+//     bottom: 15rem;
+//     font-size: 1.5rem;
+//     padding: 2.5rem 7rem;
+
+//     @include respond(tab-land){
+//         left: 5rem;
+//         bottom: 15rem;
+//         padding: 2rem 6rem;
+//     }
+
+//     @include respond(tab-port){
+//         left: 4rem;
+//         bottom: 12rem;
+//         padding: 2rem 6rem;
+
+//     }
+
+//     @include respond(phone){
+//         margin: 0 auto;
+//         display: block;
+//         position: static;
+
+//     }
+
+// }

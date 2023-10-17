@@ -1,0 +1,43 @@
+
+.user-menu {
+
+    display: block;
+    z-index: 1000;
+
+    &__label{
+        display: inline-block;
+        width: 5rem;
+        height: 5rem;
+        cursor: pointer;
+    }
+
+    &__checkbox {
+        display: none;
+    }
+
+    &__sidebar{
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        max-width: 30rem;
+        width: 80%;
+
+        // padding: 10rem 5rem 0 5rem;
+        padding-top: 10rem;
+        padding-inline: 1rem;
+        transform: translateX(-200%);
+        background: linear-gradient(to right bottom, $color-primary-light,  $color-primary-dark);
+        z-index: -1;
+        transition: transform .5s ease-in-out;
+        
+    }
+    
+    &__checkbox:checked + &__sidebar {
+        // display: block;
+        transform: translateX(0);
+        // transition: transform .5s ease-out;
+    }
+}

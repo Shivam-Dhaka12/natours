@@ -1,0 +1,45 @@
+include _navigation
+include _menu
+
+mixin navItem(link, text, icon, active)
+    li(class=`${active ? 'side-nav--active' : ''}`)
+        a(href=`${link}`)
+            svg
+                use(xlink:href=`/img/icons.svg#icon-${icon}`)
+            | #{text}
+        
+section.top 
+
+    .top-container
+        nav.flex-box
+            if user
+                .user-menu
+                    label.user-menu__label.top__user-img(style=`background: url(/img/users/${user.photo}); background-size: cover;` for='user-menu__checkbox')
+                    input.user-menu__checkbox#user-menu__checkbox(type='checkbox')
+                    nav.user-menu__sidebar
+                        ul.side-nav
+                            +navItem('/me', 'Settings', 'settings', false)
+                            +navItem('/my-tours', 'My Bookings', 'briefcase', false)
+                            //- +navItem('#', 'My reviews', 'star', false)
+                            .nav__el--logout
+                                +navItem('#', 'Logout', 'credit-card', false)
+
+                            - if (user.role === 'admin')
+                                .u-margin-top-big
+                                    h5.admin-nav__heading Admin
+                                +navItem('#', 'Manange tours', 'map', false)
+                                +navItem('#', 'Manage users', 'users', false)
+                                +navItem('#', 'Manage reviews', 'star', false)
+                                +navItem('#', 'Manage Bookings', 'briefcase', false)
+
+            else
+                if currentRoute==='/login'
+                    a.btn-text.btn-text--active(href='/signup') Sign Up
+                else 
+                    a.btn-text.btn-text--active(href='/login') Log In
+
+            a(href='/').top__logo 
+                img(src='/img/logo-green.png' alt='Natours logo')
+            +navigation
+
+        

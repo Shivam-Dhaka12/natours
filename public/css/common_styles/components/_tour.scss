@@ -1,0 +1,180 @@
+
+
+.section-header {
+
+    min-height: 55rem;
+
+    @include respond(phone){
+        min-height: 45rem;
+        // margin-bottom: 1rem;
+    }
+}
+
+.heading-box {
+
+    width: max-content;
+    
+    @include respond(tab-port) {
+        top: 45%;
+    }
+}
+
+.heading-primary--tour {
+
+    @include respond(tab-port) {
+        font-size: 3.5rem;
+    }
+
+    @include respond(phone){
+        font-size: 3rem;
+        width: 70%;
+    }
+}
+
+.section-description {
+
+    @include respond(tab-port) {
+        flex-direction: column;
+    }
+}
+
+.overview-box {
+
+    @include respond(tab-port) {
+        padding-top: 15rem;
+        display: block;
+
+        &__container{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 3rem;
+        }
+    }
+
+    @include respond(phone){
+        padding-top: 10rem;
+    }
+}
+
+.description-box{
+    margin-bottom: 5rem;
+}
+
+.icon-arrows-square-left,
+.icon-arrows-square-right {
+
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    
+    transform: translateY(-50%) scale(1);
+    transform-origin: center;
+    transition: transform .2s ease-in-out;
+    backface-visibility: hidden;
+
+    font-size: 5rem;
+    color: $color-primary;
+
+    @include respond(phone){
+        font-size: 4rem;
+    }
+
+    &:hover {
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    &:active {
+        transform: translateY(-45%);
+    }
+
+    &:before {
+        background-color: $color-white;
+    }
+}
+
+.icon-arrows-square-right {
+    left: auto;
+    right: 1rem;
+}
+
+
+.section-pictures {
+    min-height: 25rem;
+}
+.section-map {
+
+    @include respond(tab-port) {
+        height: 55rem;
+    }
+
+    @include respond(phone){
+        height: 35rem;
+    }
+}
+
+.cta__img-container {
+
+    @include respond(phone){
+        position: relative;
+        // display: flex;
+        // width: 100%;
+        height: 15rem;
+        // margin: 0 auto;
+        // justify-content: center;
+    }
+}
+
+.cta {
+    
+    @include respond (phone){
+        padding: 8rem 5rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        &__img--1,
+        &__img--2 {
+            display: none;
+        }
+
+        &__img--logo{
+            width: 10rem;
+            height: 10rem;
+            left: 50%;
+            top: 0;
+            -webkit-transform: translate(-50%);
+            transform: translateX(-50%);
+        }
+    }
+}
+
+.cta__content {
+
+    column-gap: 4rem;
+
+    @include respond(phone) {
+
+        & > *:last-child {
+            margin-top: 2.5rem; /* Adjust the gap for the last row as needed */
+        }
+        
+            text-align: center;
+            // width: 95%;
+            max-width: 40rem;
+            display: grid;
+            grid-template-rows: auto auto auto; /* Add an additional row for the button */
+            grid-template-columns: 1fr; /* Change to a single column layout */
+            row-gap: .5rem;
+            align-items: center;
+            justify-items: center; /* Center align items horizontally */
+        
+    }
+}
+
+.span-all-rows {
+
+    @include respond(phone){
+        grid-row: auto;
+    }
+}

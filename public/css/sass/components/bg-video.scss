@@ -1,0 +1,32 @@
+
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: .1;
+
+    &__fallback {
+        display: none;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+
+        @include respond(tab-port) {
+            display: block;
+        }
+    }
+
+    &__content {
+
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+
+        @include respond(tab-port) {
+            display: none;
+        }
+    }
+}

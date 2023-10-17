@@ -1,0 +1,17 @@
+mixin navigation
+    .navigation
+        input#navi-toggle.navigation__checkbox(type='checkbox')
+        label.navigation__button(for='navi-toggle')
+            span.navigation__icon &nbsp;
+        .navigation__background &nbsp;
+        nav.navigation__nav
+            ul.navigation__list
+                li.navigation__item
+                    a.navigation__link(href='/') Home
+                li.navigation__item
+                    a.navigation__link(href='/tours') All Tours
+                li.navigation__item
+                    a.navigation__link(href='/#contact-section') Contact Us
+                li.navigation__item
+                    a.navigation__link(href='#footer') About Us
+
