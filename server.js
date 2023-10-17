@@ -12,6 +12,7 @@ const app = require(`${__dirname}/app`);
 
 // DB connection using mongoose
 const DB = process.env.DB.replace('<PASSWORD>', process.env.DB_PASSWORD);
+let server;
 
 mongoose
   .connect(DB, {
@@ -20,13 +21,21 @@ mongoose
     useFindAndModify: false,
     useUnifiedTopology: true,
   })
-  .then(() => console.log('DB conncection successful!'));
+  .then(() => { 
+    console.log('DB conncection successful!');
+  
+    // listen
+    const port = process.env.PORT || 3000;
+    server = app.listen(port, () => {
+      console.log(`app running on port ${port} ....`);
+    });
 
-// listen
-const port = process.env.PORT || 3000;
-const server = app.listen(port, () => {
-  console.log(`app running on port ${port} ....`);
-});
+  })
+  .catch((err) => {
+    console.log('Error connecting to DB: ', err);
+  });
+    
+
 
 process.on('unhandledRejection', err => {
   console.log('Unhandled rejection! Shutting down.....');
