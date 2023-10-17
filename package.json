@@ -4,7 +4,8 @@
   "description": "Learning Node, Express and MongoDB.",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "set NODE_ENV=production&&node server.js",
+    "start:dev": "nodemon server.js",
     "start:prod": "set NODE_ENV=production&&nodemon server.js",
     "insert": "set NODE_ENV=LOADER&&nodemon insert-dev-data.js --insert",
     "delete": "set NODE_ENV=LOADER&&nodemon insert-dev-data.js --delete",
