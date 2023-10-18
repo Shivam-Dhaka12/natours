@@ -63,7 +63,7 @@ const limiter = rateLimit({
     xForwardedForHeader: false,
 });
 
-app.use('/api', limiter);
+// app.use('/api', limiter);
 
 //body parser: reading data from body into req.body
 app.use(
