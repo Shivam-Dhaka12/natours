@@ -2,7 +2,7 @@ include _navigation
 
 mixin user-menu
     .user-menu
-        label.user-menu__label.top__user-img(style=`background: url(/img/users/${user.photo}); background-size: cover;` for='user-menu__checkbox')
+        label.user-menu__label.top__user-img(style=`background: url(${user.photo ? user.photo : '/default.jpg' }); background-size: cover;` for='user-menu__checkbox')
         input.user-menu__checkbox#user-menu__checkbox(type='checkbox')
         nav.user-menu__sidebar
             ul.side-nav
@@ -10,11 +10,11 @@ mixin user-menu
                 +navItem('/my-tours', 'My Bookings', 'briefcase', false)
                 +navItem('#', 'My reviews', 'star', false)
                 +navItem('#', 'Billing', 'credit-card', false)
-            - if (user.role === 'admin')
-                .admin-nav
-                    h5.admin-nav__heading Admin
-                    ul.side-nav
-                        +navItem('#', 'Manange tours', 'map', false)
-                        +navItem('#', 'Manage users', 'users', false)
-                        +navItem('#', 'Manage reviews', 'star', false)
-                        +navItem('#', 'Manage Bookings', 'briefcase', false)
+            //- - if (user.role === 'admin')
+            //-     .admin-nav
+            //-         h5.admin-nav__heading Admin
+            //-         ul.side-nav
+            //-             +navItem('#', 'Manange tours', 'map', false)
+            //-             +navItem('#', 'Manage users', 'users', false)
+            //-             +navItem('#', 'Manage reviews', 'star', false)
+            //-             +navItem('#', 'Manage Bookings', 'briefcase', false)

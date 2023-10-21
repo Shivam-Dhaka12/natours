@@ -1,8 +1,12 @@
 // const fs = require('fs');
 const multer = require('multer');
 const sharp = require('sharp');
-const User = require(`${__dirname}/../models/userModel`);
+const AWS = require("aws-sdk");
+
+const s3 = new AWS.S3();
+
 // const ApiFeatures = require(`${__dirname}/../utils/ApiFeatures`);
+const User = require(`${__dirname}/../models/userModel`);
 const catchAsync = require(`${__dirname}/../utils/catchAsync`);
 const AppError = require(`${__dirname}/../utils/appError`);
 const factory = require(`${__dirname}/handlerFactory`);
@@ -29,17 +33,6 @@ const multerFilter = (req, file, cb) => {
   }
 }
 
-
-// exports.handleUpdateMe = catchAsync( async (req, res, next) => {
-//   // Check if an image is present in the form data
-//   if (req.files && req.files.photo) {
-//     uploadUserPhoto(req, res);
-//     await resizeUserPhoto(req, res);
-//   }
-//   await updateMe(req, res, next);
-//   next();
-// });
-
 const upload = multer({ 
   storage: multerStorage,
   fileFilter: multerFilter,
@@ -47,36 +40,51 @@ const upload = multer({
 
 exports.uploadUserPhoto = upload.single('photo');
 
+async function uploadObject(userId, file) {
+  const params = {
+    Body: file,
+    Bucket: "cyclic-drab-blue-deer-tux-ap-south-1",
+    Key: `${userId}.jpeg`,
+  };
+
+  try {
+    const data = await s3.upload(params).promise();
+    // console.log('Object uploaded:', data);
+  } catch (err) {
+    console.error('Error uploading object:', err);
+  }
+}
+// this function also stores images to aws bucket after resizing them.
 exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
   
   if (!req.file) return next();
 
-  // console.log(req.file);
-  
-  req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
-  
-  // console.log(req.file.filename);
-
-  await sharp(req.file.buffer)
+  const file = await sharp(req.file.buffer)
     .resize(500, 500)
     .toFormat('jpeg')
-    .jpeg({ quality: 90 })
-    .toFile(`public/img/users/${req.file.filename}`);
-  
+    .jpeg({ quality: 100 })
+    .toBuffer(); 
+
+  await uploadObject(req.user._id, file);
+
   next();
 });
+  
 
 
 exports.updateMe = catchAsync(async (req, res, next) => {
+
 
   if (req.body.password || req.body.passwordConfirm) {
     return next(new AppError('Cannot change password from this route. Go to /users/updatepassword', 400));
   }
   
   const filteredBody = filterObj(req.body, 'name', 'email');
-  // console.log(req.file.filename);
 
-  if (req.file) filteredBody.photo = req.file.filename;
+  if (req.file) {
+    filteredBody.photo = `/api/v1/users/img/`;
+  }
+    
   // new: true return newly updated user data.
   const updatedUser = await User.findByIdAndUpdate(req.user._id, filteredBody, {new: true, runValidators: true});
   res.status(200).json({
@@ -93,6 +101,26 @@ exports.getMe = (req, res, next) => {
   req.params.id = req.user._id;
   next();
 }
+
+// sends image to client
+exports.getImage = catchAsync(async (req, res, next) => {
+
+  const key = `${req.user._id}.jpeg`;
+
+  const readStream = getFileStream(key);
+
+  readStream.pipe(res);
+});
+
+//get back the image from s3
+function getFileStream(fileKey) {
+  const params = {
+    Bucket: "cyclic-drab-blue-deer-tux-ap-south-1",
+    Key: fileKey,
+  };
+  return s3.getObject(params).createReadStream();
+}
+
 
 exports.deleteMe = catchAsync(async (req, res, next) => {
   const user = await User.findByIdAndUpdate(req.user._id, { active: false });

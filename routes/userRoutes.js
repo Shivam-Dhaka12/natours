@@ -53,7 +53,11 @@ router
     userController.uploadUserPhoto,
     userController.resizeUserPhoto,
     userController.updateMe
-  );
+);
+  
+router
+  .route('/img')
+  .get( userController.getImage);
   
 router
   .route('/updatepassword')

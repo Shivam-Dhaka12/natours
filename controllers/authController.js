@@ -3,7 +3,6 @@ const axios = require('axios');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const crypto = require('crypto');
-const sharp = require('sharp');
 
 const User = require(`${__dirname}/../models/userModel`);
 const catchAsync = require(`${__dirname}/../utils/catchAsync`);
@@ -26,33 +25,37 @@ function generateRandomPassword() {
 }
 
 
-async function processImageFromUrl(imageUrl, user_id) {
-  try {
-    const response = await axios.get(imageUrl, {
-      responseType: 'arraybuffer',
-    });
+// async function processImageFromUrl(imageUrl, user_id) {
+//   try {
+//     const response = await axios.get(imageUrl, {
+//       responseType: 'arraybuffer',
+//     });
 
-    const filename = `user-${user_id}-${Date.now()}.jpeg`;
-    // Pass the image buffer to the sharp constructor
-    const processedImage = sharp(response.data)
-      .resize(500, 500)
-      .toFormat('jpeg')
-      .jpeg({ quality: 90 })
-      .toFile(`public/img/users/${filename}`);
+//     const filename = `user-${user_id}-${Date.now()}.jpeg`;
+//     // Pass the image buffer to the sharp constructor
+//     const processedImage = sharp(response.data)
+//       .resize(500, 500)
+//       .toFormat('jpeg')
+//       .jpeg({ quality: 90 })
+//       .toFile(`public/img/users/${filename}`);
     
-    return filename;
+//     return filename;
 
-  } catch (error) {
-    console.error(error);
-    // Handle the error according to your requirements
-    throw new Error('Failed to process image');
-  }
-}
+//   } catch (error) {
+//     console.error(error);
+//     // Handle the error according to your requirements
+//     throw new Error('Failed to process image');
+//   }
+// }
+
+
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
+
+
 
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
@@ -60,7 +63,6 @@ const createSendToken = (user, statusCode, res) => {
     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
     httpOnly: true
   }
-
 
   if (process.env.NODE_ENV === 'production') {
     cookie_options.secure = true;
@@ -83,6 +85,8 @@ const createSendToken = (user, statusCode, res) => {
   });
 }
 
+
+
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
     name: req.body.name,
@@ -99,6 +103,8 @@ exports.signup = catchAsync(async (req, res, next) => {
   createSendToken(newUser, 201, res);
   
 });
+
+
 
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
@@ -173,6 +179,8 @@ exports.isLoggedIn = async (req, res, next) => {
   next();
 };
 
+
+
 exports.logout = (req, res) => {
   
   res.cookie('jwt', 'Logged Out', {
@@ -184,6 +192,9 @@ exports.logout = (req, res) => {
     status: 'success'
   });
 }
+
+
+
 //protect route
 exports.protect = catchAsync(async (req, res, next) => {
   //check if token is there
@@ -225,6 +236,8 @@ exports.protect = catchAsync(async (req, res, next) => {
   next();
 });
 
+
+
 exports.restrictTo = (...roles) => {
   //roles is an array of arguments.
   return (req, res, next) => {
@@ -234,6 +247,8 @@ exports.restrictTo = (...roles) => {
     next();
   };
 };
+
+
 
 exports.forgotPassword = catchAsync(async (req, res, next) => {
   // get user based on posted email
@@ -253,12 +268,6 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     
     await new Email(user, resetURL).sendPasswordReset();
 
-    // await sendEmail({
-    //   email: user.email,
-    //   subject: 'Your password reset token (valid only for 10 mins)',
-    //   message
-    // });
-
     res.status(200).json({
       status: 'success',
       message: 'Token sent to email!'
@@ -274,6 +283,8 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     return next(new AppError(error.message, 500));
   }
 });
+
+
 
 exports.resetPassword = catchAsync( async (req, res, next) => {
 
@@ -329,6 +340,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   // next();
 });
 
+
 const getGoogleAuthUrl = () => {
   const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
   const options = {
@@ -345,6 +357,8 @@ const getGoogleAuthUrl = () => {
 exports.googleAuth = catchAsync(async (req, res, next) => {
   res.send(getGoogleAuthUrl());
 });
+
+
 
 //after google authentication
 exports.googleAuthCallback = catchAsync(async (req, res, next) => {
@@ -390,20 +404,21 @@ exports.googleAuthCallback = catchAsync(async (req, res, next) => {
     if (!user) {
 
       const randomPassword = generateRandomPassword();
-      const newUser = await User.create({
+      user = await User.create({
         name: userData.name,
         email: userData.email,
         oauthUser: true,
         password: randomPassword,
-        passwordConfirm: randomPassword
+        passwordConfirm: randomPassword,
+        photo: userData.picture
       });
       //2> Update User photo
-      const photo= await processImageFromUrl(userData.picture, newUser._id);
-      const updatedUser = await User.findByIdAndUpdate(newUser._id, { photo}, { new: true });
+      // const photo= await processImageFromUrl(userData.picture, newUser._id);
+      // const updatedUser = await User.findByIdAndUpdate(newUser._id, { photo}, { new: true });
 
   
       //3> Set user_id to new User id.
-      user = updatedUser;
+      // user = updatedUser;
       // console.log('user_id: ===>   ',user._id);
     }
 
