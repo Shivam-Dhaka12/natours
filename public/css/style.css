@@ -1224,7 +1224,7 @@ body {
   align-self: center;
 }
 
-.error {
+/* .error {
   position: absolute;
   top: 35%;
   left: 50%;
@@ -1232,7 +1232,7 @@ body {
   transform: translate(-50%, -50%);
   max-width: 80rem;
   text-align: center;
-}
+} */
 .error__title {
   display: -webkit-box;
   display: -ms-flexbox;
