@@ -19,8 +19,8 @@
   "author": "Shivam Dhaka",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "3.433.0",
     "@babel/polyfill": "^7.12.1",
-    "aws-sdk": "^2.1475.0",
     "axios": "^1.5.0",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",

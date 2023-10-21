@@ -1,13 +1,16 @@
 // const fs = require('fs');
 const multer = require('multer');
 const sharp = require('sharp');
-const s3 = require("aws-sdk/clients/s3");
+const { PutObjectCommand, GetObjectCommand, S3Client } = require("@aws-sdk/client-s3");
 
 // const ApiFeatures = require(`${__dirname}/../utils/ApiFeatures`);
 const User = require(`${__dirname}/../models/userModel`);
 const catchAsync = require(`${__dirname}/../utils/catchAsync`);
 const AppError = require(`${__dirname}/../utils/appError`);
 const factory = require(`${__dirname}/handlerFactory`);
+
+
+const s3 = new S3Client({});
 
 
 const filterObj = (obj, ...allowedFields) => {
@@ -39,15 +42,17 @@ const upload = multer({
 exports.uploadUserPhoto = upload.single('photo');
 
 async function uploadObject(userId, file) {
-  const params = {
+
+  const command = new PutObjectCommand({
     Body: file,
     Bucket: "cyclic-drab-blue-deer-tux-ap-south-1",
     Key: `${userId}.jpeg`,
-  };
+  });
+
 
   try {
-    const data = await s3.upload(params).promise();
-    // console.log('Object uploaded:', data);
+    const response = await s3.send(command);
+    // console.log(JSON.stringify(response, null, 2));
   } catch (err) {
     console.error('Error uploading object:', err);
   }
@@ -101,23 +106,40 @@ exports.getMe = (req, res, next) => {
 }
 
 // sends image to client
-exports.getImage = catchAsync(async (req, res, next) => {
+exports.getImage = catchAsync(async (req, res) => {
 
   const key = `${req.user._id}.jpeg`;
 
-  const readStream = getFileStream(key);
+  const command = new GetObjectCommand({
+    Bucket: "cyclic-drab-blue-deer-tux-ap-south-1",
+    Key: key,
+  });
+  
+  try {
 
-  readStream.pipe(res);
+    const response = await s3.send(command);
+    const imageData = response.Body;
+
+    // console.log(imageData);
+
+    res.setHeader("Content-Type", response.ContentType);
+
+    imageData.pipe(res);
+    // res.send(imageData);
+
+  } catch (err) {
+    console.error(err);
+  }
+
+  // res.status(200).json({
+  //   status: 'success',
+  //   // data: readStream
+  // })
+  // res.setHeader("Content-Disposition", `attachment; filename=${key}`);
+  // // res.setHeader("Content-Type", res.ContentType);
+  // readStream.pipe(res);
 });
 
-//get back the image from s3
-function getFileStream(fileKey) {
-  const params = {
-    Bucket: "cyclic-drab-blue-deer-tux-ap-south-1",
-    Key: fileKey,
-  };
-  return s3.getObject(params).createReadStream();
-}
 
 
 exports.deleteMe = catchAsync(async (req, res, next) => {
