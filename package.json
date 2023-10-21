@@ -12,7 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "ndb server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url /js",
-    "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
+    "build": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
     "compile:sass": "sass public/css/sass/main.scss public/css/sass_style.css --watch",
     "compile:sass-common": "sass public/css/common_styles/main.scss public/css/common_style.css --watch"
   },
