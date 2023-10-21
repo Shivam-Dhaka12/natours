@@ -1,9 +1,7 @@
 // const fs = require('fs');
 const multer = require('multer');
 const sharp = require('sharp');
-const AWS = require("aws-sdk");
-
-const s3 = new AWS.S3();
+const s3 = require("aws-sdk/clients/s3");
 
 // const ApiFeatures = require(`${__dirname}/../utils/ApiFeatures`);
 const User = require(`${__dirname}/../models/userModel`);
