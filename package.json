@@ -12,7 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "ndb server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url /js",
-    "build": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
+    "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
     "compile:sass": "sass public/css/sass/main.scss public/css/sass_style.css --watch",
     "compile:sass-common": "sass public/css/common_styles/main.scss public/css/common_style.css --watch"
   },
@@ -37,9 +37,7 @@
     "mongoose": "^5.13.20",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "ndb": "^1.1.5",
     "nodemailer": "^6.9.5",
-    "parcel-bundler": "^1.12.5",
     "pug": "^3.0.2",
     "s": "^1.0.0",
     "sharp": "^0.32.5",
@@ -49,6 +47,8 @@
     "xss-clean": "^0.1.4"
   },
   "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "ndb": "^1.1.5",
     "prettier": "3.0.3",
     "sass": "^1.69.1"
   },
