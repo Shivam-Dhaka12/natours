@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "set NODE_ENV=production&&node server.js",
+    "deploy": "set NODE_ENV=production&&node public/bundle.js",
     "start:dev": "nodemon server.js",
     "start:prod": "set NODE_ENV=production&&nodemon server.js",
     "insert": "set NODE_ENV=LOADER&&nodemon insert-dev-data.js --insert",
