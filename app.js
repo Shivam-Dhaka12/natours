@@ -8,6 +8,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const compression = require('compression');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
 const AppError = require('./utils/appError');
 const errorController = require('./controllers/errorController');
@@ -136,8 +138,7 @@ app.use(errorController);
 
 module.exports = app;
 
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+
 
 process.on('uncaughtException', err => {
   console.log('Uncaught Exception! Shutting down.....');
@@ -150,16 +151,11 @@ process.on('uncaughtException', err => {
 
 
 // DB connection using mongoose
-const DB = process.env.DB.replace('<PASSWORD>', process.env.DB_PASSWORD);
+const DB = process.env.DB;
 let server;
 
 mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  })
+  .connect(DB, {})
   .then(() => {
     console.log('DB conncection successful!');
 
