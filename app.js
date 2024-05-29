@@ -22,21 +22,21 @@ const viewRouter = require('./routes/viewRoutes');
 dotenv.config({ path: './config.env' });
 const app = express();
 
-app.use(cors({
-    origin: '*',
-    credentials: true,
-    methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
-}));
+app.use(
+    cors({
+        origin: '*',
+        credentials: true,
+        methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
+    })
+);
 
 app.options('*', cors());
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-
 //serving static files from public folder
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 //MIDDLEWARES
 
@@ -50,9 +50,8 @@ if (process.env.NODE_ENV === 'development') {
 //     origin: '*', // Allow requests from this origin
 //     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 //   };
-  
-  // Use the CORS middleware
 
+// Use the CORS middleware
 
 //set security headers
 app.use(helmet());
@@ -75,7 +74,6 @@ app.use(
 );
 app.use(cookieParser());
 
-
 //Data santization against noSql query injection
 app.use(mongoSanitize());
 
@@ -95,7 +93,6 @@ app.use(
         ],
     })
 );
-
 
 app.use(compression());
 
@@ -138,44 +135,37 @@ app.use(errorController);
 
 module.exports = app;
 
-
-
-process.on('uncaughtException', err => {
-  console.log('Uncaught Exception! Shutting down.....');
-  console.log(err.name, err.message, err);
-  process.exit(1);
+process.on('uncaughtException', (err) => {
+    console.log('Uncaught Exception! Shutting down.....');
+    console.log(err.name, err.message, err);
+    process.exit(1);
 });
 
-
 //Server.js starts
-
 
 // DB connection using mongoose
 const DB = process.env.DB;
 let server;
 
 mongoose
-  .connect(DB, {})
-  .then(() => {
-    console.log('DB conncection successful!');
+    .connect(DB, {})
+    .then(() => {
+        console.log('DB conncection successful!');
 
-    // listen
-    const port = process.env.PORT || 8020;
-    server = app.listen(port, () => {
-      console.log(`app running on port ${port} ....`);
+        // listen
+        const port = process.env.PORT || 8020;
+        server = app.listen(port, () => {
+            console.log(`app running on port ${port} ....`);
+        });
+    })
+    .catch((err) => {
+        console.log('Error connecting to DB: ', err);
     });
 
-  })
-  .catch((err) => {
-    console.log('Error connecting to DB: ', err);
-  });
-
-
-
-process.on('unhandledRejection', err => {
-  console.log('Unhandled rejection! Shutting down.....');
-  console.log(err.name, err.message);
-  server.close(() => {
-    process.exit(1);
-  })
+process.on('unhandledRejection', (err) => {
+    console.log('Unhandled rejection! Shutting down.....');
+    console.log(err.name, err.message);
+    server.close(() => {
+        process.exit(1);
+    });
 });
