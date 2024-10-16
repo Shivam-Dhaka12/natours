@@ -10,6 +10,15 @@ Checkout the deployed version: [natours-node.app](https://node-natours/cyclic.ap
 <br>
 <br>
 
+![image](https://github.com/user-attachments/assets/b6299501-42bf-40b1-b95f-71863b7ba7ea)
+
+![image](https://github.com/user-attachments/assets/7a311518-2b16-49f5-b8eb-a95740536d63)
+
+![image](https://github.com/user-attachments/assets/e3c64aab-cda3-40f6-bf15-34012318f697)
+
+<br/>
+<br/>
+
 ## **Technologies used:**
 <br>
 <div >
