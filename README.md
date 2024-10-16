@@ -5,7 +5,7 @@
 **A full-stack web application for booking nature tours.**
 
 This project is a Node.js-based web application that allows users to browse and book tours.<br>
-Checkout the deployed version: [natours-node.app](https://node-natours/cyclic.app)
+Checkout the deployed version: [natours.app](https://natours.shivamdhaka1200.serv00.net/)
 <br>
 <br>
 <br>
